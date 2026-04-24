@@ -3,6 +3,7 @@ package com.fundoonotes.service;
 import com.fundoonotes.dto.NoteDTO;
 import com.fundoonotes.entity.Note;
 import com.fundoonotes.repository.NoteRepository;
+import com.fundoonotes.exception.NoteNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class NoteService {
 
     public Note getNoteById(Long id) {
         return noteRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Note not found"));
+                .orElseThrow(() -> new NoteNotFoundException("Note not found"));
     }
 
     public Note togglePin(Long id) {
