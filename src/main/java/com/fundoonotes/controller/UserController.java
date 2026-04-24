@@ -1,7 +1,6 @@
 package com.fundoonotes.controller;
 
-import com.fundoonotes.dto.UserRegisterRequest;
-import com.fundoonotes.dto.UserResponse;
+import com.fundoonotes.dto.*;
 import com.fundoonotes.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.*;
@@ -19,5 +18,10 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<UserResponse> register(@Valid @RequestBody UserRegisterRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.register(request));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
+        return ResponseEntity.ok(userService.login(request));
     }
 }
