@@ -34,4 +34,22 @@ public class NoteService {
         return noteRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Note not found"));
     }
+
+    public Note togglePin(Long id) {
+        Note note = getNoteById(id);
+        note.setPinned(!note.isPinned());
+        return noteRepository.save(note);
+    }
+
+    public Note toggleArchive(Long id) {
+        Note note = getNoteById(id);
+        note.setArchived(!note.isArchived());
+        return noteRepository.save(note);
+    }
+
+    public Note toggleTrash(Long id) {
+        Note note = getNoteById(id);
+        note.setTrashed(!note.isTrashed());
+        return noteRepository.save(note);
+    }
 }

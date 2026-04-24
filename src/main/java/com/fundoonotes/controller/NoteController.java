@@ -31,4 +31,19 @@ public class NoteController {
     public Note getNoteById(@PathVariable Long id) {
         return noteService.getNoteById(id);
     }
+
+    @PatchMapping("/{id}/pin")
+    public Note togglePin(@PathVariable Long id) {
+        return noteService.togglePin(id);
+    }
+
+    @PatchMapping("/{id}/archive")
+    public Note toggleArchive(@PathVariable Long id) {
+        return noteService.toggleArchive(id);
+    }
+
+    @PatchMapping("/{id}/trash")
+    public Note toggleTrash(@PathVariable Long id) {
+        return noteService.toggleTrash(id);
+    }
 }
