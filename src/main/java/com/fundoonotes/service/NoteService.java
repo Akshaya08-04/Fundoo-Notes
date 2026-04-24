@@ -5,6 +5,8 @@ import com.fundoonotes.entity.Note;
 import com.fundoonotes.repository.NoteRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class NoteService {
 
@@ -22,5 +24,14 @@ public class NoteService {
         note.setArchived(false);
         note.setTrashed(false);
         return noteRepository.save(note);
+    }
+
+    public List<Note> getAllNotes() {
+        return noteRepository.findAll();
+    }
+
+    public Note getNoteById(Long id) {
+        return noteRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Note not found"));
     }
 }

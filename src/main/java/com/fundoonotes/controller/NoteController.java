@@ -5,6 +5,8 @@ import com.fundoonotes.entity.Note;
 import com.fundoonotes.service.NoteService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/notes")
 public class NoteController {
@@ -18,5 +20,15 @@ public class NoteController {
     @PostMapping
     public Note createNote(@RequestBody NoteDTO dto) {
         return noteService.createNote(dto);
+    }
+
+    @GetMapping
+    public List<Note> getAllNotes() {
+        return noteService.getAllNotes();
+    }
+
+    @GetMapping("/{id}")
+    public Note getNoteById(@PathVariable Long id) {
+        return noteService.getNoteById(id);
     }
 }
